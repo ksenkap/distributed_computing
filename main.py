@@ -50,6 +50,7 @@ class Client:
 
     def __init__(self, adress):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         sock.connect((adress, 10000))
 
         iThread = threading.Thread(target=self.sendMsg, args=(sock,))
@@ -69,10 +70,10 @@ class Client:
 
 class p2p:
     peers = ['127.0.0.1']
-"""if len(sys.argv)>1:
-    client = Client(sys.argv[1])
-else:
-    server = Server()"""
+    """if len(sys.argv)>1:
+        client = Client(sys.argv[1])
+    else:
+        server = Server()"""
 
 while True:
     try:
